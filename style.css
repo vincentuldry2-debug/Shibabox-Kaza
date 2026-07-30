@@ -1,0 +1,483 @@
+
+:root{--bg:#070711;--panel:#111122;--line:#33245f;--purple:#8b35ff;--gold:#ffd24a}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at 50% 12%,#2c1808 0%,#080812 42%,#020207 100%);color:white;font-family:Inter,Segoe UI,Arial,sans-serif} button{font:inherit;cursor:pointer}.btn-reset{background:none;border:0;color:inherit}
+.topbar{min-height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:rgba(3,3,8,.92);border-bottom:1px solid #392600;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px)}
+.brand{display:flex;gap:12px;align-items:center;font-size:28px}.brand span:not(.logo){color:#ffd24a}.brand em{font-size:12px;color:#fff;font-style:normal;border:1px solid #5f3b00;border-radius:999px;padding:4px 8px}.logo{filter:drop-shadow(0 0 10px #ffcc44)}
+nav{display:flex;gap:10px;flex-wrap:wrap}nav button,.small-btn,.coin-pill,.filters button,.leaderboard-actions button,.twitch-actions button,footer button{border:1px solid var(--line);background:#10101f;color:#eee;border-radius:10px;padding:10px 12px;font-weight:800}button:hover{transform:translateY(-1px);filter:brightness(1.12);box-shadow:0 0 18px rgba(255,210,74,.22)}
+.profile{display:flex;align-items:center;gap:10px}.coin-pill{color:var(--gold)}
+.ticker{display:flex;gap:10px;overflow:hidden;padding:13px 22px;border-bottom:1px solid #392600;background:#060610}.mini{min-width:98px;background:#111122;border:1px solid #3a2c55;border-radius:10px;padding:6px;text-align:center;color:white}.mini img{width:70px;height:108px;object-fit:cover;border-radius:8px}.mini b{display:block;font-size:10px}.mini small{font-weight:900}
+.hero{display:grid;grid-template-columns:220px 1fr 230px;gap:24px;padding:26px;scroll-margin-top:90px}.left-menu,.case-zone,.chances,.section{background:rgba(9,9,18,.75);border:1px solid #3a2c55;border-radius:16px;box-shadow:0 0 42px rgba(255,184,41,.08)}
+.left-menu{padding:14px;display:flex;flex-direction:column;gap:10px}.left-menu button{background:#111122;border:1px solid #33245f;color:white;border-radius:10px;padding:14px;text-align:left;font-weight:900}.badge{background:#ef4444;border-radius:99px;padding:3px 8px;float:right}
+.case-zone{text-align:center;padding:26px;min-width:0}.case-zone h1{margin:0;font-size:36px;color:#ffd24a;text-shadow:0 0 18px rgba(255,210,74,.4)}.case-zone p,.hint{color:#d8c9ff;font-weight:700}
+.roulette-wrap{position:relative;overflow:hidden;margin:28px auto 22px;max-width:960px;border-top:2px solid #ffd24a;border-bottom:2px solid #ffd24a;padding:6px 0;background:rgba(0,0,0,.28)}.roulette{display:flex;gap:10px;transition:transform 4.8s cubic-bezier(.08,.75,.13,1)}
+.key-card{min-width:142px;height:235px;background:#111122;border:1px solid #3a2c55;border-radius:12px;padding:7px;text-align:center;color:white;display:flex;flex-direction:column;justify-content:space-between}.key-card img{width:100%;height:178px;object-fit:cover;border-radius:9px}.key-card b{font-size:12px}.key-card small{font-weight:900}
+.marker{position:absolute;left:50%;transform:translateX(-50%);z-index:1;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent}.marker.top{top:0;border-top:22px solid #ffd24a}.marker.bottom{bottom:0;border-bottom:22px solid #ffd24a}
+.case-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.case-buttons button,#openBtn{border:0;color:#1a1000;background:linear-gradient(135deg,#fff38a,#ffb300);padding:14px 18px;border-radius:12px;font-weight:1000;box-shadow:0 0 24px rgba(255,210,74,.35)}
+.chances{padding:18px}.chances button{display:flex;justify-content:space-between;width:100%;padding:13px 0;background:none;border:0;border-bottom:1px solid #2a2148;color:white}.legendary{color:#ffd24a}.epic{color:#d946ef}.rare{color:#18a8ff}.common{color:#eee}.uncommon{color:#75ff4f}.shiny{color:#ffe352}
+#result{min-height:125px;margin-top:16px}.win{display:inline-flex;align-items:center;gap:16px;padding:14px 20px;border-radius:14px;background:#111122;border:1px solid #ffd24a;color:white}.win img{width:84px;height:128px;object-fit:cover;border-radius:9px}
+.section{margin:0 26px 28px;padding:24px;scroll-margin-top:92px}.section h2{text-align:center;margin-top:0}.missions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.mission{background:#111122;border:1px solid #3a2c55;border-radius:12px;color:white;text-align:left;padding:18px}.mission b{display:block;margin-bottom:8px}
+.filters,.leaderboard-actions,.twitch-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:14px}.grid .key-card{min-width:0;width:100%;height:230px}
+.locked img{filter:brightness(.08) grayscale(1)}.locked b{color:#777}.drops #lastDrops{display:flex;gap:12px;overflow:auto}.drops .key-card{min-width:125px}
+.leader-row{display:flex;justify-content:space-between;padding:14px 16px;border:1px solid #33245f;background:#111122;margin:8px auto;border-radius:10px;color:white;max-width:760px;width:100%}.twitch iframe{width:100%;height:420px;border:1px solid #33245f;border-radius:14px;background:#10101e}
+footer{border-top:1px solid #392600;padding:26px;display:flex;justify-content:center;gap:14px;background:#060610;flex-wrap:wrap}.COMMON{border-color:#eee}.UNCOMMON{border-color:#75ff4f;box-shadow:0 0 15px rgba(117,255,79,.25)}.RARE{border-color:#18a8ff;box-shadow:0 0 16px rgba(24,168,255,.35)}.EPIC{border-color:#d946ef;box-shadow:0 0 18px rgba(217,70,239,.38)}.LEGENDARY{border-color:#ffd24a;box-shadow:0 0 22px rgba(255,210,74,.48)}.is-shiny{animation:shine .7s infinite alternate}@keyframes shine{to{filter:brightness(1.45) drop-shadow(0 0 20px #fff176)}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:grid;place-items:center;z-index:20}.hidden{display:none}.modal-card{background:#111122;border:1px solid #ffd24a;border-radius:18px;max-width:420px;width:92%;padding:20px;position:relative}.modal-card img{width:100%;max-height:480px;object-fit:contain;border-radius:12px}.modal-close{position:absolute;right:12px;top:12px;border:0;background:#2b174e;color:white;border-radius:9px;padding:7px 10px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#17122d;border:1px solid #ffd24a;border-radius:999px;padding:12px 20px;z-index:30}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.topbar{height:auto;flex-wrap:wrap;gap:14px;padding:16px}.section{margin:0 14px 22px}.hero{padding:18px}}
+
+
+/* V11.1 PERFECT ROULETTE */
+.marker.top{filter:drop-shadow(0 0 12px #ffd24a)}
+.marker.bottom{filter:drop-shadow(0 0 12px #ffd24a)}
+.roulette-wrap::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+  width:2px;
+  transform:translateX(-50%);
+  background:linear-gradient(transparent,#ffd24a,transparent);
+  box-shadow:0 0 16px #ffd24a;
+  pointer-events:none;
+}
+
+
+/* V11.2 SEUTABOX TWITCH STREAM */
+.seutabox-live{
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,210,74,.12), transparent 35%),
+    radial-gradient(circle at 80% 10%, rgba(139,53,255,.18), transparent 30%),
+    rgba(9,9,18,.84);
+}
+.live-head{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.live-head h2{
+  text-align:left;
+  margin:0 0 8px;
+}
+.live-status{
+  border:1px solid #4b2b2b;
+  background:#160d12;
+  color:#ff6b6b;
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:900;
+}
+.dot{
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#ff3030;
+  box-shadow:0 0 12px #ff3030;
+  margin-right:8px;
+}
+.stream-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 260px;
+  gap:18px;
+  margin-top:18px;
+}
+.stream-player{
+  position:relative;
+  background:#030307;
+  border:1px solid #3a2c55;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(255,210,74,.12);
+}
+.stream-player::before{
+  content:"";
+  display:block;
+  padding-top:56.25%;
+}
+.stream-player iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+}
+.stream-side{
+  background:#111122;
+  border:1px solid #3a2c55;
+  border-radius:16px;
+  padding:16px;
+}
+.stream-side h3{
+  margin-top:0;
+}
+.stream-side button{
+  width:100%;
+  margin:6px 0;
+  border:1px solid #5d3b10;
+  background:linear-gradient(135deg,#201225,#3b2208);
+  color:white;
+  border-radius:12px;
+  padding:12px;
+  font-weight:900;
+}
+.live-card{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+  padding:12px;
+  border-radius:12px;
+  background:#0b0b16;
+  border:1px solid #2a2148;
+}
+.chat-box{
+  margin-top:18px;
+  background:#111122;
+  border:1px solid #3a2c55;
+  border-radius:14px;
+  padding:12px;
+}
+.chat-box summary{
+  cursor:pointer;
+  font-weight:900;
+  color:#ffd24a;
+}
+#twitchChat{
+  margin-top:12px;
+  height:480px;
+  border-radius:12px;
+  overflow:hidden;
+}
+#twitchChat iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+@media(max-width:980px){
+  .stream-layout{grid-template-columns:1fr}
+}
+
+
+/* V11.3 TWITCH REWARDS */
+.rewards-panel{
+  margin-top:14px;
+  padding:14px;
+  background:#0b0b16;
+  border:1px solid #3a2c55;
+  border-radius:14px;
+}
+.reward-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin:8px 0;
+  padding:8px;
+  background:#111122;
+  border-radius:10px;
+}
+.reward-row span{font-weight:800}
+.reward-row button,.watch-box button{
+  width:auto;
+  min-width:90px;
+  margin:0;
+  padding:8px 10px;
+}
+.watch-box{
+  margin-top:12px;
+  padding:12px;
+  background:#111122;
+  border:1px solid #2a2148;
+  border-radius:12px;
+}
+.progress{
+  height:14px;
+  background:#070711;
+  border:1px solid #3a2c55;
+  border-radius:999px;
+  overflow:hidden;
+  margin:10px 0 6px;
+}
+#watchProgress{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff793f,#ffd24a);
+  box-shadow:0 0 12px #ffd24a;
+  transition:width .25s;
+}
+
+
+/* V13 LOGIN / COMPTES */
+.login-screen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(255,210,74,.18), transparent 28%),
+    rgba(2,2,8,.94);
+  backdrop-filter:blur(10px);
+}
+.login-screen.hidden{display:none}
+.login-card{
+  width:min(430px,92vw);
+  background:#111122;
+  border:1px solid #ffd24a;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 0 50px rgba(255,210,74,.22);
+}
+.login-logo{
+  font-size:54px;
+  text-align:center;
+  filter:drop-shadow(0 0 14px #ffd24a);
+}
+.login-card h1{
+  margin:8px 0 8px;
+  text-align:center;
+  color:#ffd24a;
+}
+.login-card p{
+  color:#d8c9ff;
+  text-align:center;
+}
+.login-card label{
+  display:block;
+  margin-top:14px;
+  font-weight:900;
+}
+.login-card input{
+  width:100%;
+  margin-top:6px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #3a2c55;
+  background:#070711;
+  color:white;
+  font-size:16px;
+}
+.login-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+.login-actions button{
+  flex:1;
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  font-weight:1000;
+  color:#1a1000;
+  background:linear-gradient(135deg,#fff38a,#ffb300);
+}
+#loginMessage{
+  min-height:20px;
+  color:#ffb4b4;
+  font-weight:900;
+}
+#accountName{
+  color:#ffd24a;
+}
+
+
+/* V14 ONLINE BATTLE + REAL LEADERBOARD */
+.battle-arena{
+  display:grid;
+  grid-template-columns:1fr 260px 1fr;
+  gap:18px;
+  align-items:center;
+  margin-top:18px;
+}
+.fighter,.versus,.battle-history{
+  background:#111122;
+  border:1px solid #3a2c55;
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+}
+.fighter .avatar{
+  font-size:76px;
+  filter:drop-shadow(0 0 18px #ffd24a);
+}
+.versus span{
+  display:block;
+  font-size:54px;
+  font-weight:1000;
+  color:#ffd24a;
+  text-shadow:0 0 18px rgba(255,210,74,.5);
+  margin-bottom:14px;
+}
+#battleBtn{
+  border:0;
+  color:#1a1000;
+  background:linear-gradient(135deg,#fff38a,#ffb300);
+  padding:14px 18px;
+  border-radius:12px;
+  font-weight:1000;
+  box-shadow:0 0 24px rgba(255,210,74,.35);
+}
+#battleResult{
+  min-height:48px;
+  font-weight:900;
+  color:#d8c9ff;
+}
+.battle-history{margin-top:18px}
+.battle-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  margin:8px auto;
+  border-radius:10px;
+  background:#0b0b16;
+  border:1px solid #2a2148;
+  max-width:800px;
+}
+.battle-row.win{border-color:#75ff4f}
+.battle-row.lose{border-color:#ef4444}
+.leader-row{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 16px;
+  border:1px solid #33245f;
+  background:#111122;
+  margin:8px auto;
+  border-radius:10px;
+  color:white;
+  max-width:760px;
+  width:100%;
+}
+@media(max-width:980px){
+  .battle-arena{grid-template-columns:1fr}
+}
+
+
+/* V16 REAL PVP MATCHMAKING */
+.secondary-battle{
+  margin-top:10px;
+  border:1px solid #ef4444 !important;
+  background:#291015 !important;
+  color:white !important;
+}
+.search-overlay,.vs-overlay{
+  margin-top:16px;
+  padding:18px;
+  border-radius:16px;
+  background:#0b0b16;
+  border:1px solid #3a2c55;
+}
+.loader-ring{
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  border:7px solid rgba(255,210,74,.18);
+  border-top-color:#ffd24a;
+  margin:0 auto 12px;
+  animation:spin 1s linear infinite;
+  filter:drop-shadow(0 0 14px #ffd24a);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.vs-flash{
+  font-size:72px;
+  font-weight:1000;
+  color:#ffd24a;
+  text-shadow:0 0 24px rgba(255,210,74,.8);
+  animation:pulseVs .55s alternate infinite;
+}
+@keyframes pulseVs{from{transform:scale(.96)}to{transform:scale(1.06)}}
+.battle-found{
+  animation:foundGlow .8s ease-in-out 3;
+}
+@keyframes foundGlow{
+  0%{box-shadow:0 0 0 rgba(255,210,74,0)}
+  50%{box-shadow:0 0 45px rgba(255,210,74,.55)}
+  100%{box-shadow:0 0 0 rgba(255,210,74,0)}
+}
+
+/* V17 TWITCH + TRADES */
+.twitch-login{display:block;text-align:center;margin:18px 0;padding:14px 18px;border-radius:14px;background:linear-gradient(135deg,#9146ff,#5b21b6);color:white;text-decoration:none;font-weight:1000;box-shadow:0 0 24px rgba(145,70,255,.35)}
+.login-separator{text-align:center;margin:14px 0;color:#c9baff;font-weight:900}
+.trade-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.trade-panel{background:#111122;border:1px solid #3a2c55;border-radius:16px;padding:18px;margin-top:16px}
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}.trade-card{background:#0b0b16;border:1px solid #3a2c55;border-radius:12px;padding:8px;color:white;text-align:center}
+.trade-card img{width:100%;height:120px;object-fit:cover;border-radius:8px}.trade-card b{display:block;font-size:12px}.trade-card button,#createTradeBtn,#wantedSelect{width:100%;margin-top:8px;padding:10px;border-radius:10px;border:1px solid #5d3b10;background:#17122d;color:white;font-weight:900}
+.trade-offer{display:grid;grid-template-columns:1fr auto 1fr auto;gap:12px;align-items:center;padding:12px;margin:10px 0;background:#0b0b16;border:1px solid #3a2c55;border-radius:14px}.trade-offer img{width:70px;height:100px;object-fit:cover;border-radius:8px}.trade-offer button{padding:10px 12px;border-radius:10px;border:0;background:linear-gradient(135deg,#fff38a,#ffb300);color:#1a1000;font-weight:1000}
+.rewards-panel{margin-bottom:14px;padding:14px;background:#0b0b16;border:1px solid #3a2c55;border-radius:14px}.reward-row{display:flex;justify-content:space-between;padding:8px;margin:6px 0;background:#111122;border-radius:10px}.progress{height:14px;background:#070711;border:1px solid #3a2c55;border-radius:999px;overflow:hidden;margin:10px 0 6px}#watchProgress{height:100%;width:0%;background:linear-gradient(90deg,#9146ff,#ffd24a)}
+@media(max-width:980px){.trade-layout,.trade-offer{grid-template-columns:1fr}}
+
+
+/* V18 TWITCH PROFILE */
+.twitch-avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:2px solid #9146ff;
+  object-fit:cover;
+  box-shadow:0 0 14px rgba(145,70,255,.55);
+}
+.profile-card{
+  display:grid;
+  grid-template-columns:96px 1fr auto;
+  gap:18px;
+  align-items:center;
+  background:#111122;
+  border:1px solid #3a2c55;
+  border-radius:18px;
+  padding:18px;
+}
+.profile-avatar{
+  width:96px;
+  height:96px;
+  border-radius:18px;
+  object-fit:cover;
+  background:#070711;
+  border:2px solid #9146ff;
+}
+.badges{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.badges span{
+  padding:8px 10px;
+  border-radius:999px;
+  background:#0b0b16;
+  border:1px solid #3a2c55;
+  font-weight:900;
+  color:#d8c9ff;
+}
+.mini-login{
+  margin:0;
+  white-space:nowrap;
+}
+@media(max-width:760px){
+  .profile-card{grid-template-columns:1fr;text-align:center}
+  .profile-avatar{margin:auto}
+}
+
+/* V18.1 Twitch setup helper */
+.setup-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+  margin:18px 0;
+}
+.setup-card{
+  background:#111122;
+  border:1px solid #3a2c55;
+  border-radius:14px;
+  padding:16px;
+}
+.setup-card b{
+  display:block;
+  color:#ffd24a;
+  margin-bottom:8px;
+}
+.setup-card span{
+  color:#d8c9ff;
+}
+
+.twitch-login,.twitch-profile,.twitch-setup,.seutabox-live,#twitch,.rewards-panel{display:none!important}
+.ultimate-banner{padding:12px 18px;text-align:center;background:linear-gradient(90deg,#21113f,#402100,#21113f);border-bottom:1px solid #5d3b10;font-weight:1000;color:#ffd24a}

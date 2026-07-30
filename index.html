@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ShibaBox V19.1 Crash Fixed - Vincoune</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body><div class="ultimate-banner">🐕 SHIBABOX V19.1 CRASH FIXED · COMPTES · ÉCHANGES · PVP · CLASSEMENTS</div>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">🔑🐕</div>
+    <h1>Connexion ShibaBox</h1>
+    <p>Crée ton compte pour sauvegarder tes coins, tes Shibas, tes échanges et tes victoires.</p>
+    <label>Pseudo</label>
+    <input id="loginUsername" placeholder="Exemple : Vincoune"/>
+    <label>Mot de passe</label>
+    <input id="loginPassword" type="password" placeholder="Mot de passe"/>
+    <div class="login-actions">
+      <button id="loginBtn" type="button">Se connecter</button>
+      <button id="registerBtn" type="button">Créer un compte</button>
+    </div>
+    <p id="loginMessage"></p>
+  </div>
+</div>
+
+<header class="topbar">
+  <button class="brand btn-reset" data-scroll="cases"><span class="logo">🔑</span><b>SHIBA<span>BOX</span></b><em>V19.1 CRASH FIXED</em></button>
+  <nav>
+    <button data-scroll="cases">Ouvrir une box</button>
+    <button data-scroll="collection">Collection</button><button data-scroll="trades">Échanges</button>
+    <button data-scroll="inventaire">Inventaire</button>
+    <button data-scroll="missions">Missions</button>
+    <button data-scroll="battle">Battle 1v1</button><button data-scroll="leaderboard">Classement</button>
+    
+  </nav>
+  <div class="profile">
+    <button class="coin-pill" data-action="daily"><span id="coins">500</span> 🪙</button><button class="coin-pill" data-scroll="twitch">🎁 <span id="freeCrates">0</span> caisses</button>
+    <button class="small-btn" id="accountName">Non connecté</button><button class="small-btn" id="logoutBtn">Déconnexion</button>
+  </div>
+</header>
+
+<section class="ticker" id="ticker"></section>
+
+<section class="hero" id="cases">
+  <aside class="left-menu">
+    <button data-scroll="cases">🎁 Ouvrir une box</button>
+    <button data-scroll="collection">📚 Collection</button>
+    <button data-scroll="inventaire">🎒 Inventaire</button><button data-scroll="trades">🔁 Échanges</button>
+    <button data-scroll="missions">🎯 Missions <span class="badge">3</span></button>
+    <button data-action="daily">🎁 Daily reward</button>
+    <button data-scroll="battle">⚔️ Battle 1v1</button><button data-scroll="leaderboard">🏆 Classement</button>
+    
+    <button data-action="resetDemo">♻️ Reset démo</button>
+  </aside>
+
+  <main class="case-zone">
+    <h1>SHIBA IA KEYCHAIN CASE</h1>
+    <p>Jeu en ligne complet sans Twitch</p>
+    <div class="roulette-wrap">
+      <div class="marker top"></div><div class="marker bottom"></div>
+      <div class="roulette" id="roulette"></div>
+    </div>
+    <div class="case-buttons">
+      <button id="openBtn">🎁 Ouvrir - 10 coins / caisse gratuite</button>
+      <button data-action="open5">🎁 Ouvrir x5 - 50 coins</button>
+      <button data-action="daily">🎯 Daily +1</button>
+    </div>
+    <div id="result"></div>
+  </main>
+
+  <aside class="chances">
+    <h3>Chances de drop</h3>
+    <button data-filter="LEGENDARY"><b class="legendary">Légendaire</b><span>0.05%</span></button>
+    <button data-filter="EPIC"><b class="epic">Épique</b><span>0.20%</span></button>
+    <button data-filter="RARE"><b class="rare">Rare</b><span>5.00%</span></button>
+    <button data-filter="COMMON"><b class="common">Commun</b><span>20.00%</span></button>
+    <button data-filter="UNCOMMON"><b class="uncommon">Peu commun</b><span>74.75%</span></button>
+    <button data-action="shinyInfo"><b class="shiny">★ Shiny</b><span>0.01%</span></button>
+  </aside>
+</section>
+
+
+
+
+
+
+
+
+<section class="section battle" id="battle">
+  <h2>⚔️ Battle 1v1</h2>
+  <p class="hint">Mise : <b>10 coins</b> · Matchmaking réel · Le gagnant reçoit <b>20 coins</b>.</p>
+
+  <div class="battle-arena">
+    <div class="fighter player">
+      <h3 id="battlePlayerName">Toi</h3>
+      <div class="avatar">🐕</div>
+      <p>Ta mise : 10 coins</p>
+    </div>
+
+    <div class="versus">
+      <span>VS</span>
+      <button id="battleBtn">🔎 Rechercher un adversaire - 10 coins</button>
+      <button id="cancelBattleBtn" class="secondary-battle hidden">Annuler la recherche</button>
+      
+      <p id="battleResult">Connecte-toi puis cherche un adversaire.</p>
+      <div id="searchOverlay" class="search-overlay hidden">
+        <div class="loader-ring"></div>
+        <h3>Recherche d’un adversaire...</h3>
+        <p>En attente d’un autre joueur qui appuie aussi sur 1v1.</p>
+        <small id="searchTimer">0s</small>
+      </div>
+      <div id="vsOverlay" class="vs-overlay hidden">
+        <h3 id="vsText">Vincoune VS Joueur</h3>
+        <div class="vs-flash">VS</div>
+      </div>
+    </div>
+
+    <div class="fighter opponent">
+      <h3 id="opponentName">Adversaire</h3>
+      <div class="avatar">🦊</div>
+      <p>Mise adverse : 10 coins</p>
+    </div>
+  </div>
+
+  <div class="battle-history">
+    <h3>Historique des battles</h3>
+    <div id="battleHistory"></div>
+  </div>
+</section>
+
+<section class="section" id="missions">
+  <h2>🎯 Missions</h2>
+  <div class="missions-grid">
+    <button class="mission" id="dailyBtn"><b>Daily Reward</b><span>+1 coin une fois par jour</span></button>
+    <button class="mission" data-mission="m5"><b>Ouvre 5 box</b><span id="m5">Progression: 0/5 · Récompense +30</span></button>
+    <button class="mission" data-mission="m20"><b>Ouvre 20 box</b><span id="m20">Progression: 0/20 · Récompense +100</span></button>
+    <button class="mission" data-mission="rare"><b>Drop un Rare ou mieux</b><span id="mRare">Récompense +50</span></button>
+    <button class="mission" data-mission="shiny"><b>Drop un Shiny</b><span id="mShiny">Jackpot +500</span></button>
+  </div>
+</section>
+
+<section class="section" id="inventaire">
+  <h2>🎒 Inventaire</h2>
+  <p class="hint">Porte-clés gagnés : <b id="inventoryCount">0</b> · Collection découverte : <b id="collectionCount">0 / 60</b></p>
+  <div class="filters">
+    <button data-inv-filter="ALL">Tout</button>
+    <button data-inv-filter="LEGENDARY">Légendaire</button>
+    <button data-inv-filter="EPIC">Épique</button>
+    <button data-inv-filter="RARE">Rare</button>
+    <button data-inv-filter="COMMON">Commun</button>
+    <button data-inv-filter="UNCOMMON">Peu commun</button>
+  </div>
+  <div class="grid" id="inventoryGrid"></div>
+</section>
+
+
+<section class="section trades" id="trades">
+  <h2>🔁 Échanges entre joueurs</h2>
+  <p class="hint">Échange tes doublons avec les autres joueurs. Les cartes uniques ne sont pas proposées à l’échange.</p>
+  <div class="trade-layout">
+    <div class="trade-panel"><h3>Mes doublons</h3><div id="duplicateGrid" class="mini-grid"></div></div>
+    <div class="trade-panel">
+      <h3>Créer une offre</h3>
+      <p class="hint">Choisis un de tes doublons, puis demande une carte en retour.</p>
+      <div id="selectedOffer">Aucun doublon sélectionné</div>
+      <select id="wantedSelect"></select>
+      <button id="createTradeBtn">Créer l’offre</button>
+    </div>
+  </div>
+  <div class="trade-panel"><h3>Offres disponibles</h3><div id="tradeOffers"></div></div>
+  <div class="trade-panel"><h3>Mes offres</h3><div id="myTradeOffers"></div></div>
+</section>
+
+<section class="section" id="leaderboard">
+  <h2>🏆 Classement</h2>
+  <div class="leaderboard-actions">
+    <button data-board="score">Score</button>
+    <button data-board="daily">Victoires jour</button>
+    <button data-board="weekly">Victoires semaine</button>
+    <button data-board="monthly">Victoires mois</button>
+  </div>
+  <div id="leaderboardBox"></div>
+</section>
+
+<section class="section drops">
+  <h2>Derniers drops globaux</h2>
+  <p class="hint">Affiche les drops récents de tous les joueurs avec pseudo et heure.</p>
+  <div id="lastDrops"></div>
+</section>
+
+<section class="section" id="collection">
+  <h2>📚 Collection complète</h2>
+  <p class="hint">Clique sur chaque porte-clé pour l’agrandir.</p>
+  <div class="grid" id="collectionGrid"></div>
+</section>
+
+
+
+<footer>
+  <button data-scroll="cases">Retour en haut</button>
+  <button data-action="support">Support</button>
+  <button data-action="credits">Crédits</button>
+</footer>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <button class="modal-close" data-action="closeModal">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+<script src="login-fix.js"></script>
+</body>
+</html>
